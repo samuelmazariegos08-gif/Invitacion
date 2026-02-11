@@ -17,98 +17,57 @@
           <img src="assets/images/Portada.jpg" alt="Ilustración principal" onerror="this.classList.add('img-fallback')" />
         </div>
         <div class="btn-row">
-          <button class="btn btn-primary" id="btn-si">Sí</button>
-          <button class="btn btn-ghost" id="btn-no">No</button>
+          <button class="btn btn-primary btn-yes" id="btn-si">Sí</button>
+          <button class="btn btn-ghost btn-no" id="btn-no">No</button>
         </div>
       </div>
     </section>
 
     <section class="screen" data-step="1">
       <div class="card">
-        <h1>¿Qué te gustaría comer?</h1>
-        <div class="grid one">
-          <button class="tile" data-food="Helado" data-img="assets/images/comida_helado.jpg">
-            <img src="assets/images/comida_helado.jpg" alt="Helado" onerror="this.classList.add('img-fallback')" />
-            <span>Helado</span>
-          </button>
+        <h1>¿Quieres comer helado?</h1>
+        <div class="media-frame">
+          <img src="assets/images/comida_helado.jpg" alt="Helado" onerror="this.classList.add('img-fallback')" />
         </div>
-        <button class="btn btn-primary next" disabled>Siguiente</button>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-yes">Sí</button>
+          <button class="btn btn-ghost btn-no">No</button>
+        </div>
       </div>
     </section>
 
     <section class="screen" data-step="2">
       <div class="card">
-        <h1>¿Qué te gustaría hacer?</h1>
-        <div class="grid one">
-          <button class="tile" data-activity="Película" data-img="assets/images/actividad_pelicula.jpg">
-            <img src="assets/images/actividad_pelicula.jpg" alt="Película" onerror="this.classList.add('img-fallback')" />
-            <span>Película</span>
-          </button>
+        <h1>¿Quieres ver una película?</h1>
+        <div class="media-frame">
+          <img src="assets/images/actividad_pelicula.jpg" alt="Película" onerror="this.classList.add('img-fallback')" />
         </div>
-        <button class="btn btn-primary next" disabled>Siguiente</button>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-yes">Sí</button>
+          <button class="btn btn-ghost btn-no">No</button>
+        </div>
       </div>
     </section>
 
     <section class="screen" data-step="3">
       <div class="card">
-        <h1>¿Qué tan emocionado estás?</h1>
-        <div class="media-frame">
-          <img src="assets/images/emocion.gif" alt="Emoción" onerror="this.classList.add('img-fallback')" />
+        <h1>¿Estarás libre ese día?</h1>
+        <div class="date-pill">
+          <span class="icon">📅</span>
+          <span id="fecha">14.02.2026 18:00 horas</span>
         </div>
-        <div class="slider-wrap">
-          <input id="emo" type="range" min="1" max="10" value="6" />
-          <div class="slider-label">Tu nivel de emoción es: <strong id="emo-value">6</strong></div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-yes">Sí</button>
+          <button class="btn btn-ghost btn-no">No</button>
         </div>
-        <button class="btn btn-primary next">Siguiente</button>
       </div>
     </section>
 
     <section class="screen" data-step="4">
       <div class="card">
-        <h1>¿Cuándo estás libre?</h1>
-        <div class="date-pill">
-          <span class="icon">📅</span>
-          <span id="fecha">14.02.2026 18:00 horas</span>
-        </div>
-        <button class="btn btn-primary next">Siguiente</button>
-      </div>
-    </section>
-
-    <section class="screen" data-step="5">
-      <div class="card">
-        <h2>¡Casi ahí!</h2>
-        <p class="muted">Esta es una vista previa de su invitación interactiva.</p>
-        <div class="summary">
-          <div class="summary-row">
-            <span class="icon">📅</span>
-            <span>14 de febrero de 2026</span>
-          </div>
-          <div class="summary-row">
-            <span class="icon">🕕</span>
-            <span>18:00</span>
-          </div>
-          <div class="summary-row">
-            <img class="thumb" id="sum-comida-img" src="assets/images/comida_helado.jpg" alt="Comida" onerror="this.classList.add('img-fallback')" />
-            <span>Tu comida elegida: <strong id="sum-comida">Helado</strong></span>
-          </div>
-          <div class="summary-row">
-            <img class="thumb" id="sum-actividad-img" src="assets/images/actividad_pelicula.jpg" alt="Actividad" onerror="this.classList.add('img-fallback')" />
-            <span>La actividad elegida: <strong id="sum-actividad">Película</strong></span>
-          </div>
-          <div class="summary-row">
-            <span class="icon">⭐</span>
-            <span>Nivel de emoción: <strong id="sum-emocion">6</strong>/10</span>
-          </div>
-        </div>
-        <button class="btn btn-primary next">Confirmar invitación</button>
-      </div>
-    </section>
-
-    <section class="screen" data-step="6">
-      <div class="card">
         <h1>Yay</h1>
         <div class="media-frame">
-          <img src="assets/images/Portada.jpg" alt="Celebración" onerror="this.classList.add('img-fallback')" />
+          <img src="assets/images/Fin.jpg" alt="Celebración" onerror="this.classList.add('img-fallback')" />
         </div>
         <button class="btn btn-primary" id="btn-final">Haz clic en mí</button>
       </div>

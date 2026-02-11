@@ -130,21 +130,26 @@ p { margin: 6px 0 18px; }
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  height: 64px;
+  height: 72px;
   width: 100%;
 }
 
 .btn-row .btn {
   position: absolute;
   top: 8px;
+  width: clamp(110px, 38vw, 150px);
 }
 
-#btn-si {
+.btn-yes {
   left: 16px;
 }
 
-#btn-no {
+.btn-no {
   right: 16px;
+}
+
+.btn-no:hover {
+  transform: none;
 }
 
 .grid {

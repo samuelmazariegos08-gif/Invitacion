@@ -130,13 +130,21 @@ p { margin: 6px 0 18px; }
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  min-height: 64px;
+  height: 64px;
+  width: 100%;
+}
+
+.btn-row .btn {
+  position: absolute;
+  top: 8px;
+}
+
+#btn-si {
+  left: 16px;
 }
 
 #btn-no {
-  position: absolute;
   right: 16px;
-  top: 8px;
 }
 
 .grid {

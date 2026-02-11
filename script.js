@@ -48,11 +48,42 @@ btnSi?.addEventListener("click", () => showStep(1));
 function moveNoButton() {
   if (!btnNo || !btnRow) return;
   const rowRect = btnRow.getBoundingClientRect();
+  const siRect = btnSi?.getBoundingClientRect();
   const btnRect = btnNo.getBoundingClientRect();
   const maxX = Math.max(0, rowRect.width - btnRect.width - 8);
   const maxY = Math.max(0, rowRect.height - btnRect.height - 8);
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+
+  let x = Math.random() * maxX;
+  let y = Math.random() * maxY;
+
+  if (siRect) {
+    const si = {
+      left: siRect.left - rowRect.left,
+      right: siRect.right - rowRect.left,
+      top: siRect.top - rowRect.top,
+      bottom: siRect.bottom - rowRect.top,
+    };
+
+    let tries = 0;
+    while (tries < 20) {
+      const noBox = {
+        left: x,
+        right: x + btnRect.width,
+        top: y,
+        bottom: y + btnRect.height,
+      };
+      const overlap =
+        noBox.left < si.right &&
+        noBox.right > si.left &&
+        noBox.top < si.bottom &&
+        noBox.bottom > si.top;
+      if (!overlap) break;
+      x = Math.random() * maxX;
+      y = Math.random() * maxY;
+      tries += 1;
+    }
+  }
+
   btnNo.style.left = `${x}px`;
   btnNo.style.top = `${y}px`;
 }

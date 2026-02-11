@@ -1,0 +1,144 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invitación Interactiva</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-hearts" aria-hidden="true"></div>
+
+  <main class="app" id="app">
+    <section class="screen active" data-step="0">
+      <div class="card">
+        <h1>¿Serás mi San Valentín?</h1>
+        <div class="media-frame">
+          <img src="assets/images/portada.png" alt="Ilustración principal" onerror="this.classList.add('img-fallback')" />
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="btn-si">Sí</button>
+          <button class="btn btn-ghost" id="btn-no">No</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-step="1">
+      <div class="card">
+        <h1>¿Qué te gustaría comer?</h1>
+        <div class="grid two">
+          <button class="tile" data-food="Pizza" data-img="assets/images/comida-pizza.jpg">
+            <img src="assets/images/comida-pizza.jpg" alt="Pizza" onerror="this.classList.add('img-fallback')" />
+            <span>Pizza</span>
+          </button>
+          <button class="tile" data-food="Filete" data-img="assets/images/comida-filete.jpg">
+            <img src="assets/images/comida-filete.jpg" alt="Filete" onerror="this.classList.add('img-fallback')" />
+            <span>Filete</span>
+          </button>
+          <button class="tile" data-food="Pasta" data-img="assets/images/comida-pasta.jpg">
+            <img src="assets/images/comida-pasta.jpg" alt="Pasta" onerror="this.classList.add('img-fallback')" />
+            <span>Pasta</span>
+          </button>
+          <button class="tile" data-food="Sushi" data-img="assets/images/comida-sushi.jpg">
+            <img src="assets/images/comida-sushi.jpg" alt="Sushi" onerror="this.classList.add('img-fallback')" />
+            <span>Sushi</span>
+          </button>
+        </div>
+        <button class="btn btn-primary next" disabled>Siguiente</button>
+      </div>
+    </section>
+
+    <section class="screen" data-step="2">
+      <div class="card">
+        <h1>¿Qué te gustaría hacer?</h1>
+        <div class="grid one">
+          <button class="tile" data-activity="Bowling" data-img="assets/images/actividad-bowling.jpg">
+            <img src="assets/images/actividad-bowling.jpg" alt="Bowling" onerror="this.classList.add('img-fallback')" />
+            <span>Bowling</span>
+          </button>
+          <button class="tile" data-activity="Película" data-img="assets/images/actividad-pelicula.jpg">
+            <img src="assets/images/actividad-pelicula.jpg" alt="Película" onerror="this.classList.add('img-fallback')" />
+            <span>Película</span>
+          </button>
+          <button class="tile" data-activity="Museo" data-img="assets/images/actividad-museo.jpg">
+            <img src="assets/images/actividad-museo.jpg" alt="Museo" onerror="this.classList.add('img-fallback')" />
+            <span>Museo</span>
+          </button>
+          <button class="tile" data-activity="Minigolf" data-img="assets/images/actividad-minigolf.jpg">
+            <img src="assets/images/actividad-minigolf.jpg" alt="Minigolf" onerror="this.classList.add('img-fallback')" />
+            <span>Minigolf</span>
+          </button>
+        </div>
+        <button class="btn btn-primary next" disabled>Siguiente</button>
+      </div>
+    </section>
+
+    <section class="screen" data-step="3">
+      <div class="card">
+        <h1>¿Qué tan emocionado estás?</h1>
+        <div class="media-frame">
+          <img src="assets/images/emocion.png" alt="Emoción" onerror="this.classList.add('img-fallback')" />
+        </div>
+        <div class="slider-wrap">
+          <input id="emo" type="range" min="1" max="10" value="6" />
+          <div class="slider-label">Tu nivel de emoción es: <strong id="emo-value">6</strong></div>
+        </div>
+        <button class="btn btn-primary next">Siguiente</button>
+      </div>
+    </section>
+
+    <section class="screen" data-step="4">
+      <div class="card">
+        <h1>¿Cuándo estás libre?</h1>
+        <div class="date-pill">
+          <span class="icon">📅</span>
+          <span id="fecha">14.02.2026 18:00 horas</span>
+        </div>
+        <button class="btn btn-primary next">Siguiente</button>
+      </div>
+    </section>
+
+    <section class="screen" data-step="5">
+      <div class="card">
+        <h2>¡Casi ahí!</h2>
+        <p class="muted">Esta es una vista previa de su invitación interactiva.</p>
+        <div class="summary">
+          <div class="summary-row">
+            <span class="icon">📅</span>
+            <span>14 de febrero de 2026</span>
+          </div>
+          <div class="summary-row">
+            <span class="icon">🕕</span>
+            <span>18:00</span>
+          </div>
+          <div class="summary-row">
+            <img class="thumb" id="sum-comida-img" src="assets/images/comida-pizza.jpg" alt="Comida" onerror="this.classList.add('img-fallback')" />
+            <span>Tu comida elegida: <strong id="sum-comida">Pizza</strong></span>
+          </div>
+          <div class="summary-row">
+            <img class="thumb" id="sum-actividad-img" src="assets/images/actividad-pelicula.jpg" alt="Actividad" onerror="this.classList.add('img-fallback')" />
+            <span>La actividad elegida: <strong id="sum-actividad">Película</strong></span>
+          </div>
+          <div class="summary-row">
+            <span class="icon">⭐</span>
+            <span>Nivel de emoción: <strong id="sum-emocion">6</strong>/10</span>
+          </div>
+        </div>
+        <button class="btn btn-primary next">Confirmar invitación</button>
+      </div>
+    </section>
+
+    <section class="screen" data-step="6">
+      <div class="card">
+        <h1>Yay</h1>
+        <div class="media-frame">
+          <img src="assets/images/final.png" alt="Celebración" onerror="this.classList.add('img-fallback')" />
+        </div>
+        <button class="btn btn-primary" id="btn-final">Haz clic en mí</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

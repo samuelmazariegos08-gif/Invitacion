@@ -1,10 +1,10 @@
 ﻿const screens = Array.from(document.querySelectorAll(".screen"));
 let step = 0;
 const state = {
-  food: null,
-  foodImg: null,
-  activity: null,
-  activityImg: null,
+  food: "Helado",
+  foodImg: "assets/images/comida_helado.jpg",
+  activity: "Película",
+  activityImg: "assets/images/actividad_pelicula.jpg",
   emotion: 6,
 };
 
@@ -62,7 +62,8 @@ btnNo?.addEventListener("pointerenter", moveNoButton);
 
 // Step 1: Food
 const foodSection = screens[1];
-foodSection?.querySelectorAll(".tile").forEach((btn) => {
+const foodTiles = foodSection?.querySelectorAll(".tile") || [];
+foodTiles.forEach((btn) => {
   btn.addEventListener("click", () => {
     setSelected(foodSection, btn);
     state.food = btn.dataset.food || btn.textContent.trim();
@@ -70,10 +71,16 @@ foodSection?.querySelectorAll(".tile").forEach((btn) => {
     enableNext(foodSection);
   });
 });
+if (foodTiles.length === 1) {
+  const only = foodTiles[0];
+  setSelected(foodSection, only);
+  enableNext(foodSection);
+}
 
 // Step 2: Activity
 const activitySection = screens[2];
-activitySection?.querySelectorAll(".tile").forEach((btn) => {
+const activityTiles = activitySection?.querySelectorAll(".tile") || [];
+activityTiles.forEach((btn) => {
   btn.addEventListener("click", () => {
     setSelected(activitySection, btn);
     state.activity = btn.dataset.activity || btn.textContent.trim();
@@ -81,6 +88,11 @@ activitySection?.querySelectorAll(".tile").forEach((btn) => {
     enableNext(activitySection);
   });
 });
+if (activityTiles.length === 1) {
+  const only = activityTiles[0];
+  setSelected(activitySection, only);
+  enableNext(activitySection);
+}
 
 // Step 3: Emotion
 const emo = document.getElementById("emo");

@@ -51,6 +51,20 @@
 
     <section class="screen" data-step="3">
       <div class="card">
+        <h1>¿Qué tan emocionado estás?</h1>
+        <div class="media-frame">
+          <img src="assets/images/emocion.gif" alt="Emoción" onerror="this.classList.add('img-fallback')" />
+        </div>
+        <div class="slider-wrap">
+          <input id="emo" type="range" min="1" max="10" value="6" />
+          <div class="slider-label">Tu nivel de emoción es: <strong id="emo-value">6</strong></div>
+        </div>
+        <button class="btn btn-primary next">Siguiente</button>
+      </div>
+    </section>
+
+    <section class="screen" data-step="4">
+      <div class="card">
         <h1>¿Estarás libre ese día?</h1>
         <div class="date-pill">
           <span class="icon">📅</span>
@@ -63,7 +77,7 @@
       </div>
     </section>
 
-    <section class="screen" data-step="4">
+    <section class="screen" data-step="5">
       <div class="card">
         <h1>Yay</h1>
         <div class="media-frame">

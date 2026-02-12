@@ -4,81 +4,51 @@ let step = 0;
 function showStep(next) {
   step = Math.max(0, Math.min(next, screens.length - 1));
   screens.forEach((s, i) => s.classList.toggle("active", i === step));
+  resetNoButtons();
+}
+
+function resetNoButtons() {
+  document.querySelectorAll(".btn-no").forEach((btn) => {
+    btn.style.position = "absolute";
+    btn.style.left = "";
+    btn.style.right = "16px";
+    btn.style.top = "8px";
+  });
 }
 
 function moveNoButton(noBtn, pointer) {
-  const row = noBtn.closest(".btn-row");
-  if (!row) return;
-  const yesBtn = row.querySelector(".btn-yes");
-  const rowRect = row.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
-  const maxX = Math.max(0, rowRect.width - btnRect.width - 8);
-  const maxY = Math.max(0, rowRect.height - btnRect.height - 8);
+  const padding = 12;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
 
-  let x;
-  let y;
+  let x = Math.random() * (vw - btnRect.width - padding * 2) + padding;
+  let y = Math.random() * (vh - btnRect.height - padding * 2) + padding;
 
   if (pointer) {
-    const px = pointer.clientX - rowRect.left;
-    const py = pointer.clientY - rowRect.top;
-    const side = px < rowRect.width / 2 ? "right" : "left";
-    x = side === "right" ? maxX : 0;
-    y = Math.min(maxY, Math.max(0, py + (py < rowRect.height / 2 ? 18 : -18)));
-  } else {
-    x = Math.random() * maxX;
-    y = Math.random() * maxY;
+    const sideX = pointer.clientX < vw / 2 ? vw - btnRect.width - padding : padding;
+    const sideY = pointer.clientY < vh / 2 ? vh - btnRect.height - padding : padding;
+    x = sideX;
+    y = sideY;
   }
 
-  if (yesBtn) {
-    const yesRect = yesBtn.getBoundingClientRect();
-    const yes = {
-      left: yesRect.left - rowRect.left,
-      right: yesRect.right - rowRect.left,
-      top: yesRect.top - rowRect.top,
-      bottom: yesRect.bottom - rowRect.top,
-    };
-
-    let tries = 0;
-    while (tries < 20) {
-      const noBox = {
-        left: x,
-        right: x + btnRect.width,
-        top: y,
-        bottom: y + btnRect.height,
-      };
-      const overlap =
-        noBox.left < yes.right &&
-        noBox.right > yes.left &&
-        noBox.top < yes.bottom &&
-        noBox.bottom > yes.top;
-      if (!overlap) break;
-      x = Math.random() * maxX;
-      y = Math.random() * maxY;
-      tries += 1;
-    }
-  }
-
+  noBtn.style.position = "fixed";
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
+  noBtn.style.right = "auto";
 }
 
 Array.from(document.querySelectorAll(".btn-no")).forEach((btn) => {
-  const row = btn.closest(".btn-row");
   btn.addEventListener("mouseenter", (e) => moveNoButton(btn, e));
   btn.addEventListener("pointerenter", (e) => moveNoButton(btn, e));
   btn.addEventListener("pointerdown", (e) => {
     e.preventDefault();
     moveNoButton(btn, e);
   });
-  if (row) {
-    row.addEventListener("pointermove", (e) => {
-      const rect = btn.getBoundingClientRect();
-      const dx = e.clientX - (rect.left + rect.width / 2);
-      const dy = e.clientY - (rect.top + rect.height / 2);
-      const dist = Math.hypot(dx, dy);
-      if (dist < 120) moveNoButton(btn, e);
-    });
-  }
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    moveNoButton(btn, e);
+  });
 });
 
 Array.from(document.querySelectorAll(".btn-yes")).forEach((btn) => {
@@ -91,9 +61,12 @@ Array.from(document.querySelectorAll(".btn-yes")).forEach((btn) => {
 
 const emo = document.getElementById("emo");
 const emoValue = document.getElementById("emo-value");
-emo?.addEventListener("input", (e) => {
+function updateEmoValue(e) {
+  if (!emoValue) return;
   emoValue.textContent = e.target.value;
-});
+}
+emo?.addEventListener("input", updateEmoValue);
+emo?.addEventListener("change", updateEmoValue);
 
 Array.from(document.querySelectorAll(".next")).forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -101,6 +74,16 @@ Array.from(document.querySelectorAll(".next")).forEach((btn) => {
     const current = section ? Number(section.dataset.step) : step;
     showStep(current + 1);
   });
+});
+
+document.addEventListener("pointermove", (e) => {
+  const activeNo = document.querySelector(".screen.active .btn-no");
+  if (!activeNo) return;
+  const rect = activeNo.getBoundingClientRect();
+  const dx = e.clientX - (rect.left + rect.width / 2);
+  const dy = e.clientY - (rect.top + rect.height / 2);
+  const dist = Math.hypot(dx, dy);
+  if (dist < 140) moveNoButton(activeNo, e);
 });
 
 const btnFinal = document.getElementById("btn-final");

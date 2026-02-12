@@ -66,6 +66,7 @@ const sumEmo = document.getElementById("sum-emocion");
 function updateEmoValue(e) {
   if (!emoValue) return;
   emoValue.textContent = e.target.value;
+  if (sumEmo) sumEmo.textContent = e.target.value;
 }
 emo?.addEventListener("input", updateEmoValue);
 emo?.addEventListener("change", updateEmoValue);

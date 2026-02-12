@@ -23,14 +23,17 @@ function moveNoButton(noBtn, pointer) {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
 
-  let x = Math.random() * (vw - btnRect.width - padding * 2) + padding;
-  let y = Math.random() * (vh - btnRect.height - padding * 2) + padding;
+  let x = padding;
+  let y = padding;
 
   if (pointer) {
     const sideX = pointer.clientX < vw / 2 ? vw - btnRect.width - padding : padding;
     const sideY = pointer.clientY < vh / 2 ? vh - btnRect.height - padding : padding;
     x = sideX;
     y = sideY;
+  } else {
+    x = vw - btnRect.width - padding;
+    y = vh - btnRect.height - padding;
   }
 
   noBtn.style.position = "fixed";

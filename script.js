@@ -5,6 +5,7 @@ function showStep(next) {
   step = Math.max(0, Math.min(next, screens.length - 1));
   screens.forEach((s, i) => s.classList.toggle("active", i === step));
   resetNoButtons();
+  if (step === 5) updateSummary();
 }
 
 function resetNoButtons() {
@@ -61,12 +62,18 @@ Array.from(document.querySelectorAll(".btn-yes")).forEach((btn) => {
 
 const emo = document.getElementById("emo");
 const emoValue = document.getElementById("emo-value");
+const sumEmo = document.getElementById("sum-emocion");
 function updateEmoValue(e) {
   if (!emoValue) return;
   emoValue.textContent = e.target.value;
 }
 emo?.addEventListener("input", updateEmoValue);
 emo?.addEventListener("change", updateEmoValue);
+
+function updateSummary() {
+  if (!emo || !sumEmo) return;
+  sumEmo.textContent = emo.value;
+}
 
 Array.from(document.querySelectorAll(".next")).forEach((btn) => {
   btn.addEventListener("click", () => {

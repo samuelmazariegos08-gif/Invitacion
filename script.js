@@ -27,10 +27,15 @@ function moveNoButton(noBtn, pointer) {
   let y = padding;
 
   if (pointer) {
-    const sideX = pointer.clientX < vw / 2 ? vw - btnRect.width - padding : padding;
-    const sideY = pointer.clientY < vh / 2 ? vh - btnRect.height - padding : padding;
-    x = sideX;
-    y = sideY;
+    const corners = [
+      { x: padding, y: padding },
+      { x: vw - btnRect.width - padding, y: padding },
+      { x: padding, y: vh - btnRect.height - padding },
+      { x: vw - btnRect.width - padding, y: vh - btnRect.height - padding },
+    ];
+    const pick = corners[Math.floor(Math.random() * corners.length)];
+    x = pick.x;
+    y = pick.y;
   } else {
     x = vw - btnRect.width - padding;
     y = vh - btnRect.height - padding;
